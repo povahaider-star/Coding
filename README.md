@@ -1,44 +1,42 @@
 #include <iostream>
-#include <cmath>
 using namespace std;
 
-double stdev(double x[], int n)
+void getExtremes(float& min, float& max, float a[], int n)
 {
-    double sum = 0, mean, variance = 0;
+    min = a[0];
+    max = a[0];
 
-    for(int i = 0; i < n; i++)
+    for(int i = 1; i < n; i++)
     {
-        sum += x[i];
+        if(a[i] < min)
+            min = a[i];
+
+        if(a[i] > max)
+            max = a[i];
     }
-
-    mean = sum / n;
-
-    for(int i = 0; i < n; i++)
-    {
-        variance += pow(x[i] - mean, 2);
-    }
-
-    variance = variance / n;
-
-    return sqrt(variance);
 }
 
 int main()
 {
     int n;
 
-    cout << "Enter number of elements: ";
+    cout << "Enter size of array: ";
     cin >> n;
 
-    double arr[n];
+    float arr[n];
 
-    cout << "Enter elements:\n";
+    cout << "Enter array elements:\n";
     for(int i = 0; i < n; i++)
     {
         cin >> arr[i];
     }
 
-    cout << "Standard Deviation is: " << stdev(arr, n);
+    float min, max;
+
+    getExtremes(min, max, arr, n);
+
+    cout << "Minimum value = " << min << endl;
+    cout << "Maximum value = " << max << endl;
 
     return 0;
 }
